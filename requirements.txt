@@ -1,4 +1,4 @@
-flask
+Flask==3.0.2
 ultralytics
 pymysql
 SQLAlchemy
