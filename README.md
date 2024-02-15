@@ -11,4 +11,5 @@ Once clonned follow below commands: <br>
 4. ```pip install -r requirements.txt``` <br>
 5. ```code .```
 <br>
-Make sure to create a database ```internship``` in MySQL  
+Make sure to create a database ```internship``` in MySQL
+add something 
