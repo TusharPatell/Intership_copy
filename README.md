@@ -1,2 +1,1 @@
 # Internship
-Team Members:
