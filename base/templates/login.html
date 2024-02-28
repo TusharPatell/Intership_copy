@@ -4,35 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+
+    <style>
+        /* General styles */
+        body {
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          font-family: sans-serif;
+          margin: 0;
+          padding: 0;
+          background-image: url("{{ url_for('static', filename='images/back.jpg') }}");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+        }
+
+        .outlined {
+            font-family: 'Courier New', Courier, monospace;
+            color: black;
+            text-shadow: 1px 1px 0 #fff;
+            -webkit-text-stroke: 1px #333;
+        }
+    
+        /* Centered form styles */
+        .centered-form {
+          margin: 0 auto;
+          width: 300px;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          background-color: #fff;
+        }
+    
+        /* "my-div" styles */
+        .my-div {
+          background-color:grey;
+          display: inline-block;
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 10px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+    
+        /* "my-para" styles */
+        .my-para {
+          padding: 5px;
+          color: white;
+        }
+    
+        /* Form elements */
+        table {
+          width: 100%;
+        }
+    
+        label {
+          display: block;
+          margin-bottom: 5px;
+        }
+    
+        input[type="text"],
+        input[type="password"] {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          box-sizing: border-box;
+          margin-bottom: 15px;
+        }
+    
+        button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+    
+        button:hover {
+          opacity: 0.8;
+        }
+      </style>
 </head>
 <body>
-    <div>
-        <h2>Admin Login</h2>
-    </div>
-    <div>
-        <p>Please enter your username and password.</p>
-        <form action="/login" method="post">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    <div class="my-div">
+        <h2 class="outlined">Hello User</h2>
+        <p class="my-para">Please enter your username and password here.</p>
+        <form action="/login" method="post" class="centered-form">
             <table>
                 <tr>
                     <td>
                         <label for="user-name">Username:</label>
-                        <input type="text" name="username">
+                        <input type="text" name="username" placeholder="username">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="password">Password:</label>
-                        <input type="password" name="password">
+                        <input type="password" name="password" placeholder="password">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button>Submit</button>
+                        <button>Login</button>
                     </td>
                 </tr>
             </table>
         </form>
     </div>
-    <p>dshxc</p>
 </body>
-</html>DOCTYPE
+</html>

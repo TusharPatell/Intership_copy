@@ -1,0 +1,109 @@
+/* General styles */
+body {
+    font-family: sans-serif;
+    background-color:lightgray;
+    margin: 0;
+    padding: 0;
+}
+    
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0;
+    background-color: darkslategray;
+    width: auto;
+}
+            
+.logo-container{
+    display: flex;
+    align-items: center;
+}
+    
+.logo-container img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+    
+.logo-container span {
+    font-weight: bold;
+    font-size: x-large;
+    color: black;
+}
+    
+nav {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+    
+nav ul {
+    margin-right: 20px;
+}
+    
+nav li {
+    display: inline-block;
+    background-color: #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+    
+nav li:nth-child(n-1) {
+    margin-right: 20px;
+}
+    
+nav a {
+    text-decoration: none;
+    color: black;
+}
+    
+nav a:hover {
+    opacity: 0.8;
+}
+            
+.my-heading{
+    text-align: center;
+    width: 100%;
+}
+        
+/* "my-div" styles */
+.my-div {
+    margin: 0 auto;
+    width: 500px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: darkslategray;
+}
+        
+    /* Table styles */
+table {
+    width: auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+        
+.row-one td, .row-two td {
+    padding: 5px;
+    font-weight: bold;
+}
+    
+.row-two td {
+    background-color: rgb(102, 179, 102);
+    display: inline-block;
+    /* text-align: center; */
+    border-radius: 10px;
+}
+        
+/* Link styles */
+a {
+    color: white;
+    text-decoration: none;
+}
+        
+a:hover {
+    opacity: 0.8;
+    color: darkblue;
+}

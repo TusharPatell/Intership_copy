@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- <link rel="stylesheet" href="base\static\css\dashboard.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/alogo.png') }}" alt="Logo">
+            <span>Mission-Smart Cities</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div>
+        <h2 class="my-heading">Welcome to the Dashboard</h2>
+    </div>
+    <div class="my-div">
+        <table>
+            <tr class="row-one">
+                <td>
+                    <p>Object detection is a computer vision technique that allows us to identify
+                         and locate objects in an image or video.</p>
+                    <p>Please feel free to use our detetction models on Garbage, Pothole and Cattle.</p>
+                </td>
+            </tr>
+            <tr class="row-two">
+                <td><a href="/upload-to-infer">PERFORM YOUR INFERENCE HERE</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

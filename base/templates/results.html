@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: lightgray; /* Choose a modern font family, e.g., Inter, Roboto, etc. */
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+
+        /* Header styling */
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 20px;
+          margin: 0;
+          background-color: darkslategray;
+          width: auto;
+        }
+
+        .logo-container{
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 10px;
+        }
+
+        .logo-container span {
+            font-weight: bold;
+            font-size: x-large;
+            color: black;
+        }
+
+        nav {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            margin-right: 20px;
+        }
+
+        nav li {
+            display: inline-block;
+            background-color: #ccc;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        nav li:nth-child(n-1) {
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+            color: blue;
+        }
+
+        .my-heading {
+            text-align: center;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: darkslategray;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .results {
+            display: inline-block;
+            color: black;
+            background-color: lightgray;
+            border-radius: 5px;
+        }
+
+        .result-item {
+            /* margin: 10px; */
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .result-item a {
+            background-color: #eee;
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+        .result-item a:hover {
+            color: blue;
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .result-image {
+            width: 100%;
+            max-width: 550px; /* Adjust based on your needs */
+            object-fit: cover; /* Ensure image fills the container */
+        }
+
+        .result-video {
+            width: 100%;
+            max-width: 550px; /* Adjust based on your needs */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            display: contents;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: center;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        .upload-button {
+            background-color: rgb(102, 179, 102);
+            padding: 5px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .upload-button:hover {
+            opacity: 0.8;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style> 
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/alogo.png') }}" alt="Logo">
+            <span>Mission-Smart Cities</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2 class="my-heading">Here is your Results!!</h2>
+    <div class="container"> 
+        {% if results %}
+            <p class="results">Results: {{ results }}</p>
+            {% if results.endswith(('.jpg', '.jpeg', '.png')) %}
+                <div class="result-item">
+                    <img class="result-image" src="{{ url_for('static', filename='outputs/' + results) }}?cb={{ cache_buster }}" alt="Annotated Image">
+                    <br>
+                    <a href="{{ url_for('static', filename='outputs/' + results) }}" download>Download Image</a><br>
+                </div>
+            {% elif results.endswith(('.mp4', '.mov', '.avi')) %}
+                <div class="result-item">
+                    <video class="result-video" controls>
+                        <source src="{{ url_for('static', filename='outputs/' + results) }}?cb={{ cache_buster }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <br>
+                    <a href="{{ url_for('static', filename='outputs/' + results) }}" download>Download Video</a><br>
+                </div>
+            {% endif %}
+            {% if model_name == 'pothole' %}
+                <table class="table" border="1px">
+                    <tr>
+                        <th>Pothole Count</th>
+                    </tr>
+                    <tr>
+                        <td>{{ count }}</td>
+                    </tr>
+                </table>
+            {% elif model_name == 'cattle' %}
+                <table class="table" border="1px">
+                    <tr>
+                        <th>Cattle Count</th>
+                    </tr>
+                    <tr>
+                        <td>{{ count }}</td>
+                    </tr>
+                </table>
+            {% endif %}   
+        {% else %}
+            <p>No results available.</p>
+        {% endif %}
+        <br><br>
+        <a class="upload-button" href='/upload-again'>Upload Again</a>
+    </div>
+</body>
+</html>

@@ -1,4 +1,5 @@
 from base import app
 
+
 if __name__ == '__main__':
-    app.run(threaded=True, debug=True, port=5010)
+    app.run(debug=True, port=5015)
